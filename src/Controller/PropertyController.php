@@ -1,25 +1,23 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: rizvane
- * Date: 2019-04-11
- * Time: 16:37
- */
 
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Twig\Environment;
 
-class HomeController extends AbstractController {
+class PropertyController extends AbstractController {
+
 
     /**
-     * @Route("/", name="home")
+     * @Route("/biens", name="property.index")
      * @return Response
+     *
      */
+
     public function index(): Response{
-        return new Response($this->renderView('pages\home.html.twig'));
+        return new Response($this->renderView('property/index.html.twig',  [
+            'current_menu' => 'properties'
+        ]));
     }
 }
