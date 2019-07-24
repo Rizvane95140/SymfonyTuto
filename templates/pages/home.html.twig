@@ -3,10 +3,28 @@
 {% block title 'Agence' %}
 {% block body %}
 
-    <div class="container">
         <div class="jumbotron text-center">
             <h1>Agence de test</h1>
             <p> In hac habitasse platea dictumst. Donec porta at elit scelerisque pulvinar. Donec nec neque ut orci malesuada efficitur. Vestibulum maximus sagittis convallis. Phasellus eget urna varius, convallis orci malesuada, suscipit elit. Ut efficitur nec lacus id ultricies. Mauris eu orci vel purus faucibus congue et quis magna. Aenean sed velit tortor. Pellentesque eget dui sit amet nulla tristique dignissim. </p>
         </div>
+
+    <div class="container">
+        <div class="row flex">
+            {% for property in properties %}
+                <div class="col-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <a href="{{ path('property.show', {id: property.id, slug: property.slug}) }}"> {{ property.title }}</a>
+                            </h5>
+                            <p class="card-text">{{ property.city }} ({{ property.postalCode }})</p>
+                            <div class="text-danger" style="font-weight: bold; font-size: 2rem">{{ property.formattedPrice }} €</div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}
+
+
