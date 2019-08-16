@@ -4,10 +4,42 @@
 
 {% block body %}
 
-    <div class="container">
-        <div class="jumbotron text-center">
-            <h1>Voir tous nos bien</h1>
-            <p> In hac habitasse platea dictumst. Donec porta at elit scelerisque pulvinar. Donec nec neque ut orci malesuada efficitur. Vestibulum maximus sagittis convallis. Phasellus eget urna varius, convallis orci malesuada, suscipit elit. Ut efficitur nec lacus id ultricies. Mauris eu orci vel purus faucibus congue et quis magna. Aenean sed velit tortor. Pellentesque eget dui sit amet nulla tristique dignissim. </p>
+    <div class="jumbotron">
+        <div class="container">
+            {{ form_start(form) }}
+            <div class="form-row align-items-end">
+                <div class="col">
+                    {{ form_row(form.minSurface) }}
+                </div>
+                <div class="col">
+                    {{ form_row(form.maxPrice) }}
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <button class="btn btn-primary">
+                            Rechercher
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+            {{ form_end(form) }}
+        </div>
+    </div>
+    <div class="container mt-4">
+        <h1>Voir tous nos bien</h1>
+
+        <div class="row">
+            {% for property in properties %}
+                <div class="col-md-4">
+                    {% include 'property/_property.html.twig' %}
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="pagination">
+            {{ knp_pagination_render(properties) }}
         </div>
     </div>
 {% endblock %}
